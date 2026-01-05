@@ -1,6 +1,5 @@
 import os
 import apng
-import PIL
 import json
 
 def read_floder(directory):
@@ -19,6 +18,7 @@ def read_floder(directory):
             if part=='json':
                 js=item
     return li,js
+
 def read_json(location):
     try:
         with open(location, "r", encoding="utf-8") as f:
@@ -42,8 +42,6 @@ def create_apng_picture(directory,ls,js):
             file_locate=os.path.join(directory, file_name)
             picture.append_file(file_locate, delay=ms)
     return picture
-    
-
 
 #test
 if __name__=='__main__':
