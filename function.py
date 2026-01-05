@@ -23,14 +23,17 @@ def read_json(location):
     try:
         with open(location, "r", encoding="utf-8") as f:
             data=json.load(f)
-        needed_list=data['ugokuIllustData']['frames']
-        return needed_list
     except FileNotFoundError:
         raise ValueError(f"JSON file {location} not found")
     except json.JSONDecodeError as e:
         raise ValueError(f"Invalid JSON in {location}: {e}")
     except KeyError as e:
         raise ValueError(f"Missing key in JSON: {e}")
+    try:
+        needed_list=data['ugokuIllustData']['frames']
+    except:
+        needed_list=data
+    return needed_list
 
 def create_apng_picture(directory,ls,js):
     picture=apng.APNG()
